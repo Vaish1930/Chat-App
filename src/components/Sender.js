@@ -67,5 +67,5 @@ const Msg = styled.div`
 
 const MsgText = styled.h2`
   font-family: "Fira Sans", sans-serif;
-  font-size: 16px;
+  font-size: 14px;
 `;

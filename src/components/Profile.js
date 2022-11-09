@@ -4,9 +4,12 @@ import styled from "styled-components";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import { useState } from "react";
 import AddRoom from "./AddRoom";
+import { selectUser } from "../features/authSlice";
+import { useSelector } from "react-redux";
 
 function Profile() {
   const [addRoomOpen, setAddRoomOpen] = useState(false);
+  const user = useSelector(selectUser);
 
   function openModal() {
     setAddRoomOpen(true);
@@ -21,8 +24,8 @@ function Profile() {
           }
         />
         <ProfileDetails>
-          <ProfileName>Haramkhor</ProfileName>
-          <ProfileEmail>Haramkhor10@gmail.com</ProfileEmail>
+          <ProfileName>{user?.name}</ProfileName>
+          <ProfileEmail>{user?.email}</ProfileEmail>
         </ProfileDetails>
       </ProfileWrapper>
       <CreateChatroom>

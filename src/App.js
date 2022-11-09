@@ -1,12 +1,15 @@
 import ChatRoom from "./components/ChatRoom";
-// import EditRoom from "./components/EditRoom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SignUp from "./components/SignUp";
 
 function App() {
   return (
-    <div>
-      <ChatRoom />
-      {/* <EditRoom /> */}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ChatRoom />} />
+        <Route path="/auth" element={<SignUp />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

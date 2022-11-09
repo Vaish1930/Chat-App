@@ -1,21 +1,26 @@
 import React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { selectRooms, setRoomAsync } from "../features/chatRoomSlice";
 import Card from "./Card";
 import Profile from "./Profile";
 
 function Contact() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setRoomAsync());
+  }, [dispatch]);
+
+  const rooms = useSelector(selectRooms);
   return (
     <ContactsSection>
       <Profile />
       <Search placeholder="Search Chatroom" />
       <RoomSection>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {rooms.map((room) => (
+          <Card key={room._id} name={room.name} img={room.profileUrl} />
+        ))}
       </RoomSection>
     </ContactsSection>
   );

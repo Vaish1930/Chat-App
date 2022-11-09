@@ -53,7 +53,8 @@ const UpdateName = styled.input`
   height: 30px;
   width: 250px;
   margin: 10px 0 10px 0;
-  /* border: none; */
+  border: none;
+  border-radius: 5px;
   outline-width: 0;
   padding: 10px;
 `;
@@ -63,7 +64,7 @@ const Update = styled.h2`
 `;
 
 const UpdateImage = styled.input`
-  font-size: 12px;
+  font-size: 13px;
   margin-bottom: 10px;
 `;
 

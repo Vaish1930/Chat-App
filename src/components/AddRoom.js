@@ -1,8 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 import CloseIcon from "@mui/icons-material/Close";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createRoomAsync } from "../features/chatRoomSlice";
 
 function AddRoom({ closeModal }) {
+  const [roomName, setRoomName] = useState("");
+  const [roomImg, setRoomImg] = useState("");
+
+  const dispatch = useDispatch();
+  const submitHandler = async (e) => {
+    try {
+      e.preventDefault();
+      await dispatch(
+        createRoomAsync({ name: roomName, profileUrl: roomImg })
+      ).unwrap();
+      closeModal(false);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   return (
     <ModalBackground>
       <ModalSection>
@@ -15,11 +34,22 @@ function AddRoom({ closeModal }) {
             <CloseIcon />
           </CloseButton>
         </ButtonWrapper>
-        <RoomDetails>
+        <RoomDetails onSubmit={submitHandler}>
           <RoomHeding>Create Chatroom</RoomHeding>
 
-          <RoomName placeholder="Add a Name" type="text" />
-          <RoomImg type="file" />
+          <RoomName
+            placeholder="Add a Name"
+            type="text"
+            value={roomName}
+            onChange={(e) => {
+              setRoomName(e.target.value);
+            }}
+          />
+          <RoomImg
+            type="file"
+            value={roomImg}
+            onChange={(e) => setRoomImg(e.target.value)}
+          />
           <AddRoomButton type="submit">Create Chatroom</AddRoomButton>
         </RoomDetails>
       </ModalSection>
@@ -42,7 +72,7 @@ const ModalBackground = styled.div`
   /* z-index: 100; */
 `;
 const ModalSection = styled.div`
-  width: 500px;
+  width: 350px;
   height: 250px;
   border-radius: 12px;
   background-color: #e5e5ff;

@@ -1,16 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-function Card({ props }) {
+function Card(props) {
   return (
     <CardContainer>
-      <CardImage
-        src={
-          "https://lumiere-a.akamaihd.net/v1/images/spiderman-characterthumbnail-spiderman_3a64e546.jpeg?region=0%2C0%2C300%2C300"
-        }
-      />
+      <CardImage src={props.img} />
       <RoomDetails>
-        <RoomName>Harshit</RoomName>
+        <RoomName>{props.name}</RoomName>
+
         <RecentChat>Hramkhor</RecentChat>
       </RoomDetails>
     </CardContainer>
